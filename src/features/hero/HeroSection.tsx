@@ -170,7 +170,7 @@ export default function HeroSection() {
             <motion.div
               key="loading"
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.8 }}
+              transition={{ duration: 1.8 }}
               className="absolute inset-0 z-50 flex flex-col items-center justify-center bg-black"
             >
               <img
@@ -199,7 +199,7 @@ export default function HeroSection() {
           {[...Array(30)].map((_, i) => (
             <motion.div
               key={i}
-              className="absolute w-1 h-1 bg-[#D4AF37] rounded-full"
+              className="absolute w-2 h-2 bg-[#D4AF37] rounded-full"
               initial={{
                 x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1200),
                 y: Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 800),
@@ -310,7 +310,7 @@ export default function HeroSection() {
                     <img
                       src={logoSrc}
                       alt="Golden Phoenix Logo"
-                      className="relative w-80 h-80 md:w-120 md:h-120 object-contain drop-shadow-[0_0_20px_rgba(212,175,55,0.5)]"
+                      className="relative w-80 h-80 md:w-92 md:h-92 object-contain drop-shadow-[0_0_20px_rgba(212,175,55,0.5)]"
                     />
                   </div>
                 </motion.div>
