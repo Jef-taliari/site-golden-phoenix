@@ -1,11 +1,13 @@
 import { useEffect, useRef, useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ChevronDown, Ticket } from 'lucide-react';
-const logoSrc = '/src/assets/images/logo.png';
+import logoSrc from '@/assets/images/logo.png';
 
 // ─────────────────────────────────────────────
 // CONFIGURAÇÕES
 // ─────────────────────────────────────────────
+
+const frameUrls = import.meta.glob('/src/assets/frames/*.jpg', { eager: true, import: 'default' }) as Record<string, string>;
 
 /** Primeiro e último número dos frames */
 const FRAME_START = 1000;
@@ -13,8 +15,10 @@ const FRAME_END   = 1191;
 const TOTAL_FRAMES = FRAME_END - FRAME_START + 1; // 192 frames
 
 /** Caminho dos frames — deve bater com sua pasta */
-const getFramePath = (index: number) =>
-  `/src/assets/frames/Sequência0${index}.jpg`;
+const getFramePath = (index: number) => {
+  const path = `/src/assets/frames/Sequência0${index}.jpg`;
+  return frameUrls[path] || '';
+};
 
 /** Altura total do trilho de scroll.
  *  Mais vh = animação mais lenta/controlada.

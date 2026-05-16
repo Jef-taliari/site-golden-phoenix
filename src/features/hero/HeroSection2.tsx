@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ChevronDown, Ticket } from 'lucide-react';
-const videoSrc = '/src/assets/videos/golden-phoenix.mp4';
-const logoSrc = '/src/assets/images/logo.png';
+import videoSrc from '@/assets/videos/golden-phoenix.mp4';
+import logoSrc from '@/assets/images/logo.png';
 
 // ─────────────────────────────────────────────
 // CONFIGURAÇÕES — ajuste conforme seu projeto

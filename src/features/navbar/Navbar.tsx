@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Menu, X, ShoppingBag, SunIcon, MoonIcon } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
+import logoSrc from '@/assets/images/logo.png';
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -46,7 +47,7 @@ export default function Navbar() {
           <div className="absolute left-1/2 -translate-x-1/2">
             <div className="w-24 h-24 flex items-center justify-center">
               <div className="text-3xl">
-                <img src="/src/assets/images/logo.png" alt="" />
+                <img src={logoSrc} alt="" />
               </div>
             </div>
           </div>
