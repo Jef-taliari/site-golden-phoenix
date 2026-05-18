@@ -2,3 +2,9 @@
 @source '../../**/*.{js,ts,jsx,tsx}';
 
 @import 'tw-animate-css';
+
+@theme {
+  --font-heading: 'Teko', sans-serif;
+  --font-body:    'Inter', sans-serif;
+  --font-stencil: 'Saira Stencil One', sans-serif;
+}

@@ -1,6 +1,8 @@
 import { motion } from 'motion/react';
 import { Calendar, MapPin, Clock, Ticket } from 'lucide-react';
 import { useEffect, useState } from 'react';
+import logoSrc from '@/assets/images/logo.png';
+import logoSrcMaringa from '@/assets/images/maringa-pyros.png';
 
 export default function NextGameSection() {
   const [timeLeft, setTimeLeft] = useState({
@@ -29,7 +31,7 @@ export default function NextGameSection() {
   }, []);
 
   return (
-    <section id="próximo-jogo" className="relative py-32 bg-[#0C0C0D]">
+    <section id="próximo-jogo" className="relative py-32 bg-background">
       <div className="max-w-7xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -38,10 +40,10 @@ export default function NextGameSection() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="font-['Teko'] text-6xl md:text-8xl text-white mb-4 tracking-wider">
+          <h2 className="font-['Teko'] text-6xl md:text-8xl text-foreground mb-4 tracking-wider">
             PRÓXIMO JOGO
           </h2>
-          <div className="w-24 h-1 bg-[#D4AF37] mx-auto" />
+          <div className="w-24 h-1 bg-primary mx-auto" />
         </motion.div>
 
         <motion.div
@@ -49,17 +51,17 @@ export default function NextGameSection() {
           whileInView={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.2 }}
           viewport={{ once: true }}
-          className="relative bg-gradient-to-br from-[#1a1a1c] to-[#0C0C0D] border-2 border-[#D4AF37]/30 rounded-lg overflow-hidden"
+          className="relative bg-gradient-to-br from-popover to-primary-foreground border-2 border-[#D4AF37]/30 rounded-lg overflow-hidden"
         >
           {/* Glow Effect */}
-          <div className="absolute inset-0 bg-[#D4AF37]/5 blur-3xl" />
+          <div className="absolute inset-0 bg-primary/5 blur-3xl" />
 
           <div className="relative p-8 md:p-12">
             {/* Teams Matchup */}
             <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16 mb-12">
               {/* Home Team */}
               <div className="text-center flex-1">
-                <div className="text-8xl mb-4">🔥</div>
+                <div className="mb-4 flex justify-center"><img src={logoSrc} width={190} alt="" /></div>
                 <h3 className="font-['Teko'] text-4xl md:text-5xl text-[#D4AF37] tracking-wider">
                   GOLDEN PHOENIX
                 </h3>
@@ -71,7 +73,7 @@ export default function NextGameSection() {
 
               {/* Away Team */}
               <div className="text-center flex-1">
-                <div className="text-8xl mb-4">⚡</div>
+                <div className="mb-4 flex justify-center"><img src={logoSrcMaringa} width={190} alt="" /></div>
                 <h3 className="font-['Teko'] text-4xl md:text-5xl text-white tracking-wider">
                   MARINGÁ PYROS
                 </h3>
@@ -126,14 +128,14 @@ export default function NextGameSection() {
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="group relative px-8 py-4 bg-[#D4AF37] text-[#0C0C0D] font-['Teko'] text-2xl font-bold tracking-wider overflow-hidden transition-all hover:scale-105">
+              <button type="button" className="group relative px-8 py-4 bg-[#D4AF37] text-[#0C0C0D] font-['Teko'] text-2xl font-bold tracking-wider overflow-hidden transition-all hover:scale-105">
                 <div className="absolute inset-0 bg-[#FF5100] transform translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
                 <span className="relative z-10 group-hover:text-white flex items-center gap-2 justify-center">
                   <Ticket size={24} />
                   COMPRAR INGRESSO
                 </span>
               </button>
-              <button className="px-8 py-4 border-2 border-[#D4AF37] text-[#D4AF37] font-['Teko'] text-2xl font-bold tracking-wider hover:bg-[#D4AF37] hover:text-[#0C0C0D] transition-all flex items-center gap-2 justify-center">
+              <button type="button" className="px-8 py-4 border-2 border-[#D4AF37] text-[#D4AF37] font-['Teko'] text-2xl font-bold tracking-wider hover:bg-[#D4AF37] hover:text-[#0C0C0D] transition-all flex items-center gap-2 justify-center">
                 <MapPin size={24} />
                 COMO CHEGAR
               </button>

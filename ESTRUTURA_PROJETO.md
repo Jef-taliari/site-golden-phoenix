@@ -110,3 +110,13 @@ src/
 5. **Theme Toggle**: Implementado via manipulação da classe `.light` no elemento raiz (`<html>`), controlado diretamente pelo componente `Navbar`.
 6. **Responsividade**: Cada componente usa classes responsivas do Tailwind (`md:`, `lg:`) para se adaptar a qualquer tela.
 7. **Animações**: Framer Motion é usado em todas as seções para transições suaves e microinterações.
+
+---
+
+## 🌐 Deploy e Hospedagem
+
+O projeto está configurado para deploy via **GitHub Pages**.
+
+- **URL de Produção**: [https://Jef-taliari.github.io/site-golden-phoenix](https://Jef-taliari.github.io/site-golden-phoenix)
+- **Comando**: Para fazer o build e publicar o projeto, basta rodar `npm run deploy`. O pacote `gh-pages` irá gerar a build na pasta `dist` e enviá-la para a branch `gh-pages`.
+- O `vite.config.ts` possui a configuração `base: '/site-golden-phoenix/'` para roteamento correto no subdiretório do GitHub Pages.

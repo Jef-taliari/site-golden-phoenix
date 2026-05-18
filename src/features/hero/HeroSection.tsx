@@ -1,44 +1,24 @@
-import { useEffect, useRef, useState, useCallback } from 'react';
+import { useEffect, useRef, useState, useCallback, useMemo } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ChevronDown, Ticket } from 'lucide-react';
 import logoSrc from '@/assets/images/logo.png';
-
-// ─────────────────────────────────────────────
-// CONFIGURAÇÕES
-// ─────────────────────────────────────────────
-
-const frameUrls = import.meta.glob('/src/assets/frames/*.jpg', { eager: true, import: 'default' }) as Record<string, string>;
-
-/** Primeiro e último número dos frames */
-const FRAME_START = 1000;
-const FRAME_END   = 1191;
-const TOTAL_FRAMES = FRAME_END - FRAME_START + 1; // 192 frames
-
-/** Caminho dos frames — deve bater com sua pasta */
-const getFramePath = (index: number) => {
-  const path = `/src/assets/frames/Sequência0${index}.jpg`;
-  return frameUrls[path] || '';
-};
-
-/** Altura total do trilho de scroll.
- *  Mais vh = animação mais lenta/controlada.
- *  Sugestão: 400–600vh para 192 frames */
-const SCROLL_HEIGHT = '700vh';
-
-/** Suavização entre frames (0.08 = suave | 0.25 = responsivo) */
-const EASE = 0.08;
-
-/** A partir de qual progresso (0–1) a cena final (logo + CTA) aparece */
-const SCENE3_START = 0.72;
+import {
+  FRAME_START,
+  TOTAL_FRAMES,
+  SCROLL_HEIGHT,
+  EASE,
+  SCENE3_START,
+  getFramePath,
+} from './hero.config';
 
 // ─────────────────────────────────────────────
 
 export default function HeroSection() {
-  const containerRef   = useRef<HTMLDivElement>(null);
-  const canvasRef      = useRef<HTMLCanvasElement>(null);
-  const imagesRef      = useRef<HTMLImageElement[]>([]);
-  const rafRef         = useRef<number | null>(null);
-  const targetFrameRef = useRef(0);
+  const containerRef    = useRef<HTMLDivElement>(null);
+  const canvasRef       = useRef<HTMLCanvasElement>(null);
+  const imagesRef       = useRef<HTMLImageElement[]>([]);
+  const rafRef          = useRef<number | null>(null);
+  const targetFrameRef  = useRef(0);
   const currentFrameRef = useRef(0);
 
   const [progress, setProgress]       = useState(0);
@@ -49,9 +29,21 @@ export default function HeroSection() {
 
   // Cenas baseadas no progresso
   const scene =
-    progress < 0.25         ? 1 :
+    progress < 0.01         ? 0 :
+    progress < 0.17        ? 1 :
     progress < SCENE3_START ? 2 :
                               3;
+
+  // ── Dados das partículas — calculados uma única vez ──────────────
+  const particles = useMemo(() =>
+    [...Array(30)].map((_, i) => ({
+      id: i,
+      x: Math.random() * window.innerWidth,
+      y: Math.random() * window.innerHeight,
+      targetY: Math.random() * window.innerHeight,
+      duration: Math.random() * 10 + 5,
+    })), []
+  );
 
   // ── Desenha um frame específico no canvas ────────────────────────
   const drawFrame = useCallback((index: number) => {
@@ -62,7 +54,6 @@ export default function HeroSection() {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    // Ajusta canvas ao tamanho natural do container
     const w = canvas.offsetWidth;
     const h = canvas.offsetHeight;
     if (canvas.width !== w)  canvas.width  = w;
@@ -99,7 +90,6 @@ export default function HeroSection() {
       img.onload = () => {
         loaded++;
         setLoadedCount(loaded);
-        // Exibe o primeiro frame assim que carrega
         if (loaded === 1) drawFrame(0);
         if (loaded === totalFrames) setAllLoaded(true);
       };
@@ -116,13 +106,12 @@ export default function HeroSection() {
     const container = containerRef.current;
     if (!container) return;
 
-    // RAF loop: interpola o frame atual em direção ao target
     const tick = () => {
       const diff = targetFrameRef.current - currentFrameRef.current;
       currentFrameRef.current += diff * EASE;
 
       const frameIndex = Math.round(currentFrameRef.current);
-      const clamped    = Math.max(0, Math.min(totalFrames - 1 , frameIndex));
+      const clamped    = Math.max(0, Math.min(totalFrames - 1, frameIndex));
       drawFrame(clamped);
 
       rafRef.current = requestAnimationFrame(tick);
@@ -161,6 +150,8 @@ export default function HeroSection() {
         {/* Canvas — onde os frames são desenhados */}
         <canvas
           ref={canvasRef}
+          role="img"
+          aria-label="Animação de apresentação do Golden Phoenix"
           style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }}
         />
 
@@ -178,16 +169,15 @@ export default function HeroSection() {
                 alt="Golden Phoenix"
                 className="w-80 h-80 object-contain mb-8 opacity-80"
               />
-              {/* Barra de carregamento */}
-              <div className="w-48 h-[2px] bg-[#D4AF37]/20 rounded-full overflow-hidden">
+              <div className="w-48 h-[2px] bg-primary/20 rounded-full overflow-hidden">
                 <motion.div
-                  className="h-full bg-[#D4AF37]"
+                  className="h-full bg-primary"
                   initial={{ width: 0 }}
                   animate={{ width: `${loadPercent}%` }}
                   transition={{ ease: 'linear' }}
                 />
               </div>
-              <span className="mt-3 font-['Inter'] text-[#D4AF37]/60 text-xs tracking-[0.3em]">
+              <span className="mt-3 font-['Inter'] text-primary/60 text-xs tracking-[0.3em]">
                 {loadPercent}%
               </span>
             </motion.div>
@@ -196,20 +186,13 @@ export default function HeroSection() {
 
         {/* Partículas douradas */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none z-10">
-          {[...Array(30)].map((_, i) => (
+          {particles.map((p) => (
             <motion.div
-              key={i}
-              className="absolute w-2 h-2 bg-[#D4AF37] rounded-full"
-              initial={{
-                x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1200),
-                y: Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 800),
-                opacity: 0.2,
-              }}
-              animate={{
-                y: [null, Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 800)],
-                opacity: [0.2, 0.6, 0.2],
-              }}
-              transition={{ duration: Math.random() * 10 + 5, repeat: Infinity, ease: 'linear' }}
+              key={p.id}
+              className="absolute w-2 h-2 bg-primary rounded-full"
+              initial={{ x: p.x, y: p.y, opacity: 0.2 }}
+              animate={{ y: [null, p.targetY], opacity: [0.2, 0.6, 0.2] }}
+              transition={{ duration: p.duration, repeat: Infinity, ease: 'linear' }}
             />
           ))}
         </div>
@@ -239,28 +222,50 @@ export default function HeroSection() {
                 className="text-center space-y-4"
               >
                 <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
+                  initial={{ opacity: 0, x: -50 }}
+                  animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.2, duration: 0.8 }}
-                  className="font-['Inter'] text-[#D4AF37] text-xl md:text-2xl tracking-[0.3em] font-light"
+                  className="font-['Inter'] text-primary text-xl md:text-2xl tracking-[0.3em] font-bold"
                 >
                   ARAPONGAS
                 </motion.div>
-
                 <motion.div
+                  initial={{ backgroundPosition: "200% 0%" }}
+                  animate={{ backgroundPosition: "0% 0%" }}
+                  transition={{
+                    duration: 3,
+                    ease: "easeInOut",
+                  }}
+                  className="
+                    font-['Saira_Stencil_One']
+                    text-5xl md:text-7xl lg:text-9xl
+                    tracking-wider
+                    text-transparent
+                    bg-clip-text
+                    bg-[length:200%_100%]
+                    bg-gradient-to-r
+                    from-transparent
+                    via-white
+                    to-[#D4AF37]
+                  "
+                >
+                  GOLDEN PHOENIX
+                </motion.div>
+
+                {/* <motion.div
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.4, duration: 0.8 }}
                   className="font-['Saira_Stencil_One'] text-white text-5xl md:text-7xl lg:text-9xl tracking-wider"
                 >
                   GOLDEN PHOENIX
-                </motion.div>
+                </motion.div> */}
 
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.6, duration: 0.6 }}
-                  className="font-['Inter'] text-[#D4AF37] text-sm md:text-base tracking-[0.4em] font-light"
+                  className="font-['Inter'] text-primary text-sm md:text-base tracking-[0.4em] font-bold"
                 >
                   FUTEBOL AMERICANO
                 </motion.div>
@@ -269,14 +274,14 @@ export default function HeroSection() {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 1, duration: 1 }}
-                  className="pt-16 flex flex-col items-center gap-2 text-[#D4AF37]"
+                  className="pt-16 flex flex-col items-center gap-2 text-primary"
                 >
                   <motion.div
                     animate={{ y: [0, 10, 0] }}
                     transition={{ duration: 1.5, repeat: Infinity }}
                     className="flex flex-col items-center gap-2"
                   >
-                    <span className="text-sm tracking-widest opacity-70">ROLE PARA AVANÇAR</span>
+                    <span className="text-sm tracking-widest opacity-70 font-bold shadow-primary text-white">ROLE PARA AVANÇAR</span>
                     <ChevronDown size={24} />
                   </motion.div>
                 </motion.div>
@@ -285,7 +290,6 @@ export default function HeroSection() {
           </AnimatePresence>
 
           {/* CENA 2 — vazia (os frames contam a história) */}
-          {/* Pode adicionar texto flutuante aqui se quiser */}
 
           {/* CENA 3 — Logo + CTA */}
           <AnimatePresence>
@@ -298,7 +302,6 @@ export default function HeroSection() {
                 transition={{ duration: 1 }}
                 className="relative max-w-6xl mx-auto px-6 text-center"
               >
-                {/* Logo */}
                 <motion.div
                   initial={{ scale: 0.6, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
@@ -306,7 +309,7 @@ export default function HeroSection() {
                   className="mb-6 flex justify-center"
                 >
                   <div className="relative inline-block">
-                    <div className="absolute inset-0 blur-3xl bg-[#FF5100] opacity-40 animate-pulse rounded-full" />
+                    <div className="absolute inset-0 blur-3xl bg-secondary opacity-40 animate-pulse rounded-full" />
                     <img
                       src={logoSrc}
                       alt="Golden Phoenix Logo"
@@ -315,7 +318,6 @@ export default function HeroSection() {
                   </div>
                 </motion.div>
 
-                {/* Título */}
                 <motion.h1
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -325,33 +327,35 @@ export default function HeroSection() {
                   RISE OF THE PHOENIX
                 </motion.h1>
 
-                {/* Subtítulo */}
                 <motion.p
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.5, duration: 0.6 }}
-                  className="font-['Inter'] text-[#D4AF37] text-xl md:text-2xl mb-10 tracking-[0.2em] font-light"
+                  className="font-['Inter'] text-foreground text-xl md:text-2xl mb-10 tracking-[0.2em] font-bold"
                 >
                   FROM THE ASHES
                 </motion.p>
 
-                {/* Botões CTA */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.7, duration: 0.6 }}
                   className="flex flex-col sm:flex-row gap-6 justify-center"
                 >
-                  <button className="group relative px-8 py-4 bg-primary text-primary-foreground font-['Teko'] text-2xl font-bold tracking-wider overflow-hidden transition-all hover:scale-105">
+                  {/* <button type="button" className="group relative px-8 py-4 bg-primary text-primary-foreground font-['Teko'] text-2xl font-bold tracking-wider overflow-hidden transition-all hover:scale-105">
                     <span className="relative z-10 flex items-center justify-center gap-2">
                       Comprar Ingressos <Ticket size={24} />
                     </span>
+                  </button> */}
+                  <button type="button" className="group relative px-8 py-4 bg-primary text-primary-foreground font-['Teko'] text-2xl font-bold tracking-wider overflow-hidden transition-all hover:scale-105">
+                    <span className="relative z-10 flex items-center justify-center gap-2">
+                      Seja Sócio
+                    </span>
                   </button>
-                  <button className="px-8 py-4 border-2 border-primary text-primary font-['Teko'] text-2xl font-bold tracking-wider hover:bg-primary hover:text-primary-foreground transition-all">
-                    Seja Sócio
-                  </button>
-                  <button className="px-8 py-4 border-2 border-foreground text-foreground font-['Teko'] text-2xl font-bold tracking-wider hover:bg-foreground hover:text-background transition-all">
-                    Loja Oficial
+                  <button type="button" className="group relative px-8 py-4 bg-primary text-primary-foreground font-['Teko'] text-2xl font-bold tracking-wider overflow-hidden transition-all hover:scale-105">
+                    <span className="relative z-10 flex items-center justify-center gap-2">
+                      Loja Oficial
+                    </span>
                   </button>
                 </motion.div>
               </motion.div>
@@ -360,9 +364,9 @@ export default function HeroSection() {
         </div>
 
         {/* Barra de progresso */}
-        <div className="absolute bottom-0 left-0 h-[2px] bg-[#D4AF37]/20 w-full z-40">
+        <div className="absolute bottom-0 left-0 h-[2px] bg-primary/20 w-full z-40">
           <div
-            className="h-full bg-[#D4AF37] transition-none"
+            className="h-full bg-primary transition-none"
             style={{ width: `${progress * 100}%` }}
           />
         </div>

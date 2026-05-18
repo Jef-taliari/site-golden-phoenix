@@ -9,6 +9,12 @@ export default function Navbar() {
   const [isDarkMode, setIsDarkMode] = useState(true);
 
   useEffect(() => {
+    // Forçar a página a começar no topo em qualquer recarregamento
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
+    window.scrollTo(0, 0);
+
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
     };
@@ -29,27 +35,35 @@ export default function Navbar() {
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.6, ease: 'easeOut' }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-2000 ${
           isScrolled
-            ? 'bg-background/80 backdrop-blur-xl border-b border-primary/20'
+            ? 'bg-background/20 backdrop-blur-xl border-b border-primary/20'
             : 'bg-transparent'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+        <div className="max-w-8xl mx-auto px-10 py-2 flex items-center justify-between">
           {/* Left - Brand */}
           <div className="flex items-center gap-3">
-            <div className="text-[#D4AF37] font-['Teko'] text-2xl font-semibold tracking-wider">
-              GOLDEN PHOENIX
+            <div className="text-primary font-heading text-2xl font-semibold tracking-wider">
+              GOLDEN <br /> PHOENIX
             </div>
           </div>
 
           {/* Center - Logo */}
           <div className="absolute left-1/2 -translate-x-1/2">
-            <div className="w-24 h-24 flex items-center justify-center">
+            <button 
+              onClick={() => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                // Limpa o link com #hash da URL (se existir)
+                window.history.pushState('', document.title, window.location.pathname + window.location.search);
+              }}
+              className="w-24 h-24 flex items-center justify-center hover:scale-105 transition-transform cursor-pointer"
+              aria-label="Voltar ao topo"
+            >
               <div className="text-3xl">
-                <img src={logoSrc} alt="" />
+                <img src={logoSrc} alt="Logo Golden Phoenix" />
               </div>
-            </div>
+            </button>
           </div>
 
           {/* Right - Actions */}
@@ -97,7 +111,7 @@ export default function Navbar() {
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: 50, opacity: 0 }}
               transition={{ duration: 0.4, delay: 0.1 }}
-              className="text-center space-y-8"
+              className="text-center space-y-6"
             >
               {['Próximo Jogo', 'História', 'Elenco', 'Fan Zone', 'Loja', 'Patrocínio', 'Sócio Torcedor'].map(
                 (item, index) => (
@@ -108,7 +122,7 @@ export default function Navbar() {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.1 * index }}
                     onClick={() => setIsMenuOpen(false)}
-                    className="block font-['Teko'] text-6xl md:text-8xl font-bold text-foreground hover:text-primary transition-colors tracking-wider"
+                    className="block font-heading text-6xl md:text-4xl font-bold text-foreground hover:text-primary transition-colors tracking-wider"
                   >
                     {item}
                   </motion.a>
