@@ -4,7 +4,7 @@
 
 /** Importa todos os frames da pasta de assets */
 export const frameUrls = import.meta.glob(
-  '/src/assets/frames/*.jpg',
+  '/src/assets/frames/*.webp',
   { eager: true, import: 'default' }
 ) as Record<string, string>;
 
@@ -15,7 +15,7 @@ export const TOTAL_FRAMES = FRAME_END - FRAME_START + 1; // 208 frames
 
 /** Retorna a URL do frame pelo índice absoluto (ex: 1000, 1001…) */
 export const getFramePath = (index: number): string => {
-  const path = `/src/assets/frames/Sequência0${index}.jpg`;
+  const path = `/src/assets/frames/Sequência0${index}.webp`;
   return frameUrls[path] || '';
 };
 
