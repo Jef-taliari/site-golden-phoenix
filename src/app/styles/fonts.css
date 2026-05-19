@@ -1,12 +1,120 @@
-@import url('https://fonts.googleapis.com/css2?family=Teko:wght@300;400;500;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Saira+Stencil+One&display=swap');
 
-/* :root {
-  --font-heading: 'Teko', sans-serif;
-  --font-body: 'Inter', sans-serif;
-  --font-stencil: 'Saira Stencil One', sans-serif;
-} */
+/* Teko - 300 - normal */
+@font-face {
+  font-family: 'Teko';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url('@/assets/fonts/teko-300-normal.woff2') format('woff2');
+}
+
+/* Teko - 400 - normal */
+@font-face {
+  font-family: 'Teko';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('@/assets/fonts/teko-400-normal.woff2') format('woff2');
+}
+
+/* Teko - 500 - normal */
+@font-face {
+  font-family: 'Teko';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('@/assets/fonts/teko-500-normal.woff2') format('woff2');
+}
+
+/* Teko - 600 - normal */
+@font-face {
+  font-family: 'Teko';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('@/assets/fonts/teko-600-normal.woff2') format('woff2');
+}
+
+/* Teko - 700 - normal */
+@font-face {
+  font-family: 'Teko';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('@/assets/fonts/teko-700-normal.woff2') format('woff2');
+}
+
+/* Inter - 300 - normal */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url('@/assets/fonts/inter-300-normal.woff2') format('woff2');
+}
+
+/* Inter - 400 - normal */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('@/assets/fonts/inter-400-normal.woff2') format('woff2');
+}
+
+/* Inter - 500 - normal */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('@/assets/fonts/inter-500-normal.woff2') format('woff2');
+}
+
+/* Inter - 600 - normal */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('@/assets/fonts/inter-600-normal.woff2') format('woff2');
+}
+
+/* Inter - 700 - normal */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('@/assets/fonts/inter-700-normal.woff2') format('woff2');
+}
+
+/* Inter - 800 - normal */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url('@/assets/fonts/inter-800-normal.woff2') format('woff2');
+}
+
+/* Inter - 900 - normal */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+  src: url('@/assets/fonts/inter-900-normal.woff2') format('woff2');
+}
+
+/* Saira Stencil One - 400 - normal */
+@font-face {
+  font-family: 'Saira Stencil One';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('@/assets/fonts/sairastencilone-400-normal.woff2') format('woff2');
+}
 
 body {
   font-family: var(--font-body);
