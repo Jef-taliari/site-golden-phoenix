@@ -2,17 +2,20 @@
 
 Landing Page oficial da equipe **Golden Phoenix** futebol americano de Arapongas-PR.
 
-## 🚀 Tecnologias
+## 🚀 Tecnologias e Recursos Visuais
 
-- **React 18** com **TypeScript**
-- **Vite** para build e servidor de desenvolvimento
-- **Tailwind CSS 4** para estilização utilitária
-- **Framer Motion** para animações fluidas
-- Componentes baseados em **Radix UI** (estilo Shadcn)
+- **React 18** com **TypeScript** e build ultrarrápido com **Vite 6**
+- **Tailwind CSS v4** para um sistema de design de alta performance
+- **Framer Motion** para animações interativas e microtransições premium
+- **Canvas 2D Rendering**: Renderizador customizado baseado em canvas para reproduzir uma animação cinematográfica da Fênix controlada por scroll com suavização por FPS (RAF)
+- **Shared Brand Components**: Componentes compartilhados da identidade visual (como o `PhoenixButton` com acabamentos metálicos, gradientes e varreduras de luz)
+- **Sistema de Partículas Modular (`Particles`)**: Efeito dinâmico de chispas/fagulhas douradas fluídas e otimizadas
+- **Floating Pill Navbar**: Barra de navegação flutuante premium com efeito de *glassmorphism* e logo badges tridimensionais
+- Componentes baseados em **Radix UI** de alta acessibilidade
 
 ## 🏗️ Estrutura e Arquitetura
 
-O projeto utiliza uma arquitetura **Feature-Based**. Para detalhes completos sobre a arquitetura, separação de pastas e padrões de código, veja a nossa documentação técnica:
+O projeto utiliza uma arquitetura **Feature-Based** moderna (focada em facilidade de escala e isolamento por seção). Para detalhes completos sobre a árvore de diretórios, regras e padrões de código do site, veja a nossa documentação técnica:
 👉 **[ESTRUTURA_PROJETO.md](./ESTRUTURA_PROJETO.md)**
 
 ## 💻 Como Rodar Localmente (Desenvolvimento)

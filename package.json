@@ -4,6 +4,8 @@
   "homepage": "https://Jef-taliari.github.io/site-golden-phoenix",
   "version": "0.0.1",
   "type": "module",
+  "description": "Site do Golden Phoenix Futebol Americano",
+  "author": "Jeferson Taliari",
   "scripts": {
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",

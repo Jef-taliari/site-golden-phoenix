@@ -1,8 +1,8 @@
 import { motion } from 'motion/react';
 import { Calendar, MapPin, Clock, Ticket } from 'lucide-react';
 import { useEffect, useState } from 'react';
-import logoSrc from '@/assets/images/logo.png';
-import logoSrcMaringa from '@/assets/images/maringa-pyros.png';
+import logoSrc from '@/assets/images/logo-phoenix.webp';
+import logoSrcMaringa from '@/assets/images/logo-maringa-pyros.webp';
 
 export default function NextGameSection() {
   const [timeLeft, setTimeLeft] = useState({
@@ -40,7 +40,7 @@ export default function NextGameSection() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="font-['Teko'] text-6xl md:text-8xl text-foreground mb-4 tracking-wider">
+          <h2 className="font-heading text-6xl md:text-8xl text-foreground mb-4 tracking-wider">
             PRÓXIMO JOGO
           </h2>
           <div className="w-24 h-1 bg-primary mx-auto" />
@@ -51,7 +51,7 @@ export default function NextGameSection() {
           whileInView={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.2 }}
           viewport={{ once: true }}
-          className="relative bg-gradient-to-br from-popover to-primary-foreground border-2 border-[#D4AF37]/30 rounded-lg overflow-hidden"
+          className="relative bg-gradient-to-br from-popover to-primary-foreground border-2 border-ring/30 rounded-lg overflow-hidden"
         >
           {/* Glow Effect */}
           <div className="absolute inset-0 bg-primary/5 blur-3xl" />
@@ -62,22 +62,22 @@ export default function NextGameSection() {
               {/* Home Team */}
               <div className="text-center flex-1">
                 <div className="mb-4 flex justify-center"><img src={logoSrc} width={190} alt="" /></div>
-                <h3 className="font-['Teko'] text-4xl md:text-5xl text-[#D4AF37] tracking-wider">
+                <h3 className="font-heading text-4xl md:text-5xl text-primary tracking-wider">
                   GOLDEN PHOENIX
                 </h3>
-                <p className="text-white/70">Arapongas</p>
+                <p className="text-foreground/70">Arapongas</p>
               </div>
 
               {/* VS */}
-              <div className="font-['Saira_Stencil_One'] text-5xl md:text-7xl text-white">VS</div>
+              <div className="font-heading text-5xl md:text-7xl text-foreground">VS</div>
 
               {/* Away Team */}
               <div className="text-center flex-1">
                 <div className="mb-4 flex justify-center"><img src={logoSrcMaringa} width={190} alt="" /></div>
-                <h3 className="font-['Teko'] text-4xl md:text-5xl text-white tracking-wider">
+                <h3 className="font-heading text-4xl md:text-5xl text-foreground tracking-wider">
                   MARINGÁ PYROS
                 </h3>
-                <p className="text-white/70">Maringá</p>
+                <p className="text-foreground/70">Maringá</p>
               </div>
             </div>
 
@@ -91,51 +91,51 @@ export default function NextGameSection() {
               ].map((item) => (
                 <div
                   key={item.label}
-                  className="bg-[#0C0C0D] border border-[#D4AF37]/30 rounded p-6 text-center"
+                  className="bg-background border border-ring/30 rounded p-6 text-center"
                 >
-                  <div className="font-['Teko'] text-5xl md:text-6xl text-[#D4AF37] mb-2">
+                  <div className="font-heading text-5xl md:text-6xl text-primary mb-2">
                     {String(item.value).padStart(2, '0')}
                   </div>
-                  <div className="text-white/70 text-sm tracking-widest">{item.label}</div>
+                  <div className="text-foreground/70 text-sm tracking-widest">{item.label}</div>
                 </div>
               ))}
             </div>
 
             {/* Game Details */}
             <div className="grid md:grid-cols-3 gap-6 mb-8">
-              <div className="flex items-center gap-3 text-white">
-                <Calendar className="text-[#D4AF37]" size={24} />
+              <div className="flex items-center gap-3 text-foreground">
+                <Calendar className="text-primary" size={24} />
                 <div>
-                  <p className="text-sm text-white/70">Data</p>
-                  <p className="font-['Teko'] text-xl">15 DE JUNHO, 2026</p>
+                  <p className="text-sm text-foreground/70">Data</p>
+                  <p className="font-heading text-xl">15 DE JUNHO, 2026</p>
                 </div>
               </div>
-              <div className="flex items-center gap-3 text-white">
-                <Clock className="text-[#D4AF37]" size={24} />
+              <div className="flex items-center gap-3 text-foreground">
+                <Clock className="text-primary" size={24} />
                 <div>
-                  <p className="text-sm text-white/70">Horário</p>
-                  <p className="font-['Teko'] text-xl">19:00</p>
+                  <p className="text-sm text-foreground/70">Horário</p>
+                  <p className="font-heading text-xl">19:00</p>
                 </div>
               </div>
-              <div className="flex items-center gap-3 text-white">
-                <MapPin className="text-[#D4AF37]" size={24} />
+              <div className="flex items-center gap-3 text-foreground">
+                <MapPin className="text-primary" size={24} />
                 <div>
-                  <p className="text-sm text-white/70">Local</p>
-                  <p className="font-['Teko'] text-xl">ESTÁDIO DOS PÁSSAROS</p>
+                  <p className="text-sm text-foreground/70">Local</p>
+                  <p className="font-heading text-xl">ESTÁDIO DOS PÁSSAROS</p>
                 </div>
               </div>
             </div>
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button type="button" className="group relative px-8 py-4 bg-[#D4AF37] text-[#0C0C0D] font-['Teko'] text-2xl font-bold tracking-wider overflow-hidden transition-all hover:scale-105">
-                <div className="absolute inset-0 bg-[#FF5100] transform translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
-                <span className="relative z-10 group-hover:text-white flex items-center gap-2 justify-center">
+              <button type="button" className="group relative px-8 py-4 bg-primary text-background font-heading text-2xl font-bold tracking-wider overflow-hidden transition-all hover:scale-105">
+                <div className="absolute inset-0 bg-secondary transform translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
+                <span className="relative z-10 group-hover:text-foreground flex items-center gap-2 justify-center">
                   <Ticket size={24} />
                   COMPRAR INGRESSO
                 </span>
               </button>
-              <button type="button" className="px-8 py-4 border-2 border-[#D4AF37] text-[#D4AF37] font-['Teko'] text-2xl font-bold tracking-wider hover:bg-[#D4AF37] hover:text-[#0C0C0D] transition-all flex items-center gap-2 justify-center">
+              <button type="button" className="px-8 py-4 border-2 border-ring text-primary font-heading text-2xl font-bold tracking-wider hover:bg-primary hover:text-background transition-all flex items-center gap-2 justify-center">
                 <MapPin size={24} />
                 COMO CHEGAR
               </button>

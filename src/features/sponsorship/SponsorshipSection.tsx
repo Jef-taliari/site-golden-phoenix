@@ -1,5 +1,6 @@
 import { motion } from 'motion/react';
 import { TrendingUp, Users, Eye, Share2 } from 'lucide-react';
+import logoSrc from '@/assets/images/logo-phoenix.webp';
 
 const stats = [
   { icon: Users, label: 'TORCEDORES', value: '5K+' },
@@ -10,10 +11,10 @@ const stats = [
 
 export default function SponsorshipSection() {
   return (
-    <section id="patrocínio" className="relative py-32 bg-[#0C0C0D] overflow-hidden">
+    <section id="patrocínio" className="relative py-32 bg-background overflow-hidden">
       {/* Glow Effects */}
-      <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#D4AF37]/10 rounded-full blur-3xl" />
-      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-[#FF5100]/10 rounded-full blur-3xl" />
+      <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
+      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-secondary/10 rounded-full blur-3xl" />
 
       <div className="relative max-w-7xl mx-auto px-6">
         <motion.div
@@ -23,11 +24,11 @@ export default function SponsorshipSection() {
           viewport={{ once: true }}
           className="text-center mb-20"
         >
-          <h2 className="font-['Teko'] text-6xl md:text-8xl text-white mb-4 tracking-wider">
+          <h2 className="font-heading text-6xl md:text-8xl text-foreground mb-4 tracking-wider">
             PATROCÍNIO
           </h2>
-          <div className="w-24 h-1 bg-[#D4AF37] mx-auto mb-6" />
-          <p className="text-white/70 text-xl max-w-2xl mx-auto">
+          <div className="w-24 h-1 bg-primary mx-auto mb-6" />
+          <p className="text-foreground/70 text-xl max-w-2xl mx-auto">
             Faça parte da ascensão do futebol americano em Arapongas
           </p>
         </motion.div>
@@ -43,12 +44,12 @@ export default function SponsorshipSection() {
               viewport={{ once: true }}
               className="relative group"
             >
-              <div className="bg-gradient-to-br from-[#1a1a1c] to-[#0C0C0D] border-2 border-[#D4AF37]/30 rounded-lg p-8 text-center transition-all hover:border-[#FF5100] hover:shadow-2xl hover:shadow-[#FF5100]/20">
-                <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-[#D4AF37] to-[#FF5100] rounded-lg mb-4 group-hover:scale-110 transition-transform">
-                  <stat.icon size={32} className="text-[#0C0C0D]" />
+              <div className="bg-gradient-to-br from-card to-background border-2 border-ring/30 rounded-lg p-8 text-center transition-all hover:border-secondary hover:shadow-2xl hover:shadow-secondary/20">
+                <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-lg mb-4 group-hover:scale-110 transition-transform">
+                  <stat.icon size={32} className="text-background" />
                 </div>
-                <div className="font-['Teko'] text-5xl text-[#D4AF37] mb-2">{stat.value}</div>
-                <div className="text-white/70 text-sm tracking-wider">{stat.label}</div>
+                <div className="font-heading text-5xl text-primary mb-2">{stat.value}</div>
+                <div className="text-foreground/70 text-sm tracking-wider">{stat.label}</div>
               </div>
             </motion.div>
           ))}
@@ -60,7 +61,7 @@ export default function SponsorshipSection() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
           viewport={{ once: true }}
-          className="relative bg-gradient-to-br from-[#D4AF37] to-[#FF5100] rounded-lg p-12 overflow-hidden"
+          className="relative bg-gradient-to-br from-primary to-secondary rounded-lg p-12 overflow-hidden"
         >
           {/* Background Pattern */}
           <div className="absolute inset-0 opacity-10">
@@ -70,20 +71,26 @@ export default function SponsorshipSection() {
           </div>
 
           <div className="relative z-10 text-center">
-            <div className="text-7xl mb-6">🔥</div>
-            <h3 className="font-['Saira_Stencil_One'] text-4xl md:text-6xl text-[#0C0C0D] mb-6 tracking-wider">
+            <div className="text-2x1 mb-1">
+              <img 
+                src={logoSrc} 
+                alt="Logo Golden Phoenix" 
+                className="inline-block h-64 w-auto" // ou h-16 se quiser menor
+              />
+            </div>
+            <h3 className="font-heading text-4xl md:text-6xl text-background mb-6 tracking-wider">
               TORNE-SE PARTE DA ASCENSÃO
             </h3>
-            <p className="text-[#0C0C0D]/80 text-xl mb-8 max-w-2xl mx-auto">
+            <p className="text-background/80 text-xl mb-8 max-w-2xl mx-auto">
               Associe sua marca ao time que está revolucionando o futebol americano no Paraná.
               Visibilidade em jogos, transmissões e redes sociais.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <button className="px-10 py-5 bg-[#0C0C0D] text-white font-['Teko'] text-2xl font-bold tracking-wider hover:bg-[#1a1a1c] transition-all">
+              <button className="px-10 py-5 bg-background text-foreground font-heading text-2xl font-bold tracking-wider hover:bg-card transition-all">
                 QUERO SER PATROCINADOR
               </button>
-              <button className="px-10 py-5 border-2 border-[#0C0C0D] text-[#0C0C0D] font-['Teko'] text-2xl font-bold tracking-wider hover:bg-[#0C0C0D] hover:text-white transition-all">
+              <button className="px-10 py-5 border-2 border-background text-background font-heading text-2xl font-bold tracking-wider hover:bg-background hover:text-foreground transition-all">
                 BAIXAR MÍDIA KIT
               </button>
             </div>
@@ -114,12 +121,12 @@ export default function SponsorshipSection() {
           ].map((benefit, index) => (
             <div
               key={benefit.title}
-              className="bg-[#1a1a1c] border border-[#D4AF37]/30 rounded-lg p-6 text-center"
+              className="bg-card border border-ring/30 rounded-lg p-6 text-center"
             >
-              <h4 className="font-['Teko'] text-2xl text-[#D4AF37] mb-3 tracking-wider">
+              <h4 className="font-heading text-2xl text-primary mb-3 tracking-wider">
                 {benefit.title}
               </h4>
-              <p className="text-white/70">{benefit.description}</p>
+              <p className="text-foreground/70">{benefit.description}</p>
             </div>
           ))}
         </motion.div>

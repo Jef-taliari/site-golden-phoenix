@@ -16,7 +16,7 @@ export default function RosterSection() {
   const [hoveredPlayer, setHoveredPlayer] = useState<number | null>(null);
 
   return (
-    <section id="elenco" className="relative py-32 bg-[#0C0C0D]">
+    <section id="elenco" className="relative py-32 bg-background">
       <div className="max-w-7xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -25,11 +25,11 @@ export default function RosterSection() {
           viewport={{ once: true }}
           className="text-center mb-20"
         >
-          <h2 className="font-['Teko'] text-6xl md:text-8xl text-white mb-4 tracking-wider">
+          <h2 className="font-heading text-6xl md:text-8xl text-foreground mb-4 tracking-wider">
             ELENCO
           </h2>
-          <div className="w-24 h-1 bg-[#D4AF37] mx-auto mb-6" />
-          <p className="text-white/70 text-xl max-w-2xl mx-auto">
+          <div className="w-24 h-1 bg-primary mx-auto mb-6" />
+          <p className="text-foreground/70 text-xl max-w-2xl mx-auto">
             Os guerreiros que defendem as cores do Golden Phoenix
           </p>
         </motion.div>
@@ -46,31 +46,31 @@ export default function RosterSection() {
               onMouseLeave={() => setHoveredPlayer(null)}
               className="relative group cursor-pointer"
             >
-              <div className="relative bg-gradient-to-br from-[#1a1a1c] to-[#0C0C0D] border-2 border-[#D4AF37]/30 rounded-lg overflow-hidden aspect-[3/4] transition-all duration-300 hover:border-[#FF5100] hover:shadow-2xl hover:shadow-[#FF5100]/30">
+              <div className="relative bg-gradient-to-br from-card to-background border-2 border-ring/30 rounded-lg overflow-hidden aspect-[3/4] transition-all duration-300 hover:border-secondary hover:shadow-2xl hover:shadow-secondary/30">
                 {/* Number Background */}
                 <div className="absolute inset-0 flex items-center justify-center opacity-10 group-hover:opacity-20 transition-opacity">
-                  <div className="font-['Teko'] text-[200px] text-[#D4AF37] leading-none">
+                  <div className="font-heading text-[200px] text-primary leading-none">
                     {player.number}
                   </div>
                 </div>
 
                 {/* Player Avatar */}
-                <div className="absolute top-8 left-1/2 -translate-x-1/2 w-32 h-32 rounded-full bg-gradient-to-br from-[#D4AF37] to-[#FF5100] flex items-center justify-center text-6xl group-hover:scale-110 transition-transform">
+                <div className="absolute top-8 left-1/2 -translate-x-1/2 w-32 h-32 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-6xl group-hover:scale-110 transition-transform">
                   🏈
                 </div>
 
                 {/* Content */}
-                <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-[#0C0C0D] to-transparent">
+                <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-background to-transparent">
                   {/* Number */}
-                  <div className="font-['Teko'] text-5xl text-[#D4AF37] mb-2">#{player.number}</div>
+                  <div className="font-heading text-5xl text-primary mb-2">#{player.number}</div>
 
                   {/* Name */}
-                  <h3 className="font-['Teko'] text-2xl text-white mb-1 tracking-wider">
+                  <h3 className="font-heading text-2xl text-foreground mb-1 tracking-wider">
                     {player.name}
                   </h3>
 
                   {/* Position */}
-                  <p className="text-[#D4AF37] text-sm mb-3 tracking-wider">{player.position}</p>
+                  <p className="text-primary text-sm mb-3 tracking-wider">{player.position}</p>
 
                   {/* Stats - Show on Hover */}
                   <motion.div
@@ -79,14 +79,14 @@ export default function RosterSection() {
                       opacity: hoveredPlayer === index ? 1 : 0,
                       height: hoveredPlayer === index ? 'auto' : 0,
                     }}
-                    className="text-white/70 text-sm border-t border-[#D4AF37]/30 pt-3"
+                    className="text-foreground/70 text-sm border-t border-ring/30 pt-3"
                   >
                     {player.stats}
                   </motion.div>
                 </div>
 
                 {/* Glow Effect */}
-                <div className="absolute inset-0 bg-[#FF5100]/0 group-hover:bg-[#FF5100]/10 transition-all duration-300 pointer-events-none" />
+                <div className="absolute inset-0 bg-secondary/0 group-hover:bg-secondary/10 transition-all duration-300 pointer-events-none" />
               </div>
             </motion.div>
           ))}
@@ -100,7 +100,7 @@ export default function RosterSection() {
           viewport={{ once: true }}
           className="text-center mt-12"
         >
-          <button className="px-8 py-4 border-2 border-[#D4AF37] text-[#D4AF37] font-['Teko'] text-2xl font-bold tracking-wider hover:bg-[#D4AF37] hover:text-[#0C0C0D] transition-all">
+          <button className="px-8 py-4 border-2 border-ring text-primary font-heading text-2xl font-bold tracking-wider hover:bg-primary hover:text-background transition-all">
             VER ELENCO COMPLETO
           </button>
         </motion.div>

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Menu, X, ShoppingBag, SunIcon, MoonIcon } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
-import logoSrc from '@/assets/images/logo.png';
+import logoSrc from '@/assets/images/logo-phoenix.webp';
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -32,19 +32,19 @@ export default function Navbar() {
   return (
     <>
       <motion.nav
-        initial={{ y: -100 }}
+        initial={{ y: -150 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.6, ease: 'easeOut' }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-2000 ${
+        className={`fixed top-4 md:top-6 left-0 right-0 z-50 mx-auto w-[92%] max-w-6xl transition-all duration-2000 rounded-full ${
           isScrolled
-            ? 'bg-background/20 backdrop-blur-xl border-b border-primary/20'
-            : 'bg-transparent'
+            ? 'bg-background/60 backdrop-blur-xl shadow-2xl shadow-black/20'
+            : 'bg-background/40 backdrop-blur-xl shadow-2xl shadow-black/20'
         }`}
       >
-        <div className="max-w-8xl mx-auto px-10 py-2 flex items-center justify-between">
+        <div className="px-6 md:px-10 py-3 flex items-center justify-between">
           {/* Left - Brand */}
           <div className="flex items-center gap-3">
-            <div className="text-primary font-heading text-2xl font-semibold tracking-wider">
+            <div className="text-primary font-heading text-xl md:text-2xl font-semibold tracking-wider leading-none shadow-black/70">
               GOLDEN <br /> PHOENIX
             </div>
           </div>
@@ -57,11 +57,11 @@ export default function Navbar() {
                 // Limpa o link com #hash da URL (se existir)
                 window.history.pushState('', document.title, window.location.pathname + window.location.search);
               }}
-              className="w-24 h-24 flex items-center justify-center hover:scale-105 transition-transform cursor-pointer"
+              className="w-30 h-30 flex items-center justify-center hover:scale-105 transition-transform cursor-pointer"
               aria-label="Voltar ao topo"
             >
-              <div className="text-3xl">
-                <img src={logoSrc} alt="Logo Golden Phoenix" />
+              <div className="w-full h-full rounded-full flex items-center justify-center">
+                <img src={logoSrc} alt="Logo Golden Phoenix" className="w-[85%] object-contain" />
               </div>
             </button>
           </div>

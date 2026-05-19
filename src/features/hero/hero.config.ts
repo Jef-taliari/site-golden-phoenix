@@ -11,7 +11,7 @@ export const frameUrls = import.meta.glob(
 /** Primeiro e último número dos frames */
 export const FRAME_START  = 1000;
 export const FRAME_END    = 1328;
-export const TOTAL_FRAMES = FRAME_END - FRAME_START + 1; // 208 frames
+export const TOTAL_FRAMES = FRAME_END - FRAME_START + 1; // 328 frames
 
 /** Retorna a URL do frame pelo índice absoluto (ex: 1000, 1001…) */
 export const getFramePath = (index: number): string => {
@@ -21,7 +21,7 @@ export const getFramePath = (index: number): string => {
 
 /** Altura total do trilho de scroll.
  *  Mais vh = animação mais lenta/controlada.
- *  Sugestão: 400–600vh para 208 frames */
+ *  Sugestão: 400–600vh para 328 frames */
 export const SCROLL_HEIGHT = '700vh';
 
 /** Suavização do RAF entre frames.

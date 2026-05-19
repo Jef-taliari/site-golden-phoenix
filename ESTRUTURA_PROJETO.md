@@ -69,11 +69,15 @@ src/
 │   │   ├── button.tsx
 │   │   ├── card.tsx
 │   │   └── ... (48 componentes Radix/Shadcn)
+│   ├── phoenix/                  # Componentes customizados da marca Golden Phoenix
+│   │   ├── index.ts              # Arquivo de exportação (barril)
+│   │   └── PhoenixButton.tsx     # Botão premium estilizado com as cores da Fênix
 │   ├── hooks/                    # Custom hooks (useIsMobile, etc)
 │   │   └── use-mobile.ts
 │   ├── lib/                      # Funções utilitárias de biblioteca (cn, etc)
 │   │   └── utils.ts
-│   ├── animations/               # Variantes de animação (Placeholder)
+│   ├── animations/               # Animações e efeitos compartilhados
+│   │   └── Particles.tsx         # Sistema de partículas flutuantes
 │   └── utils/                    # Funções auxiliares gerais (Placeholder)
 │
 ├── assets/                       # Recursos estáticos
@@ -105,11 +109,15 @@ src/
 
 1. **Feature-Based Architecture**: Cada seção do site vive em sua própria pasta dentro de `features/`, facilitando que um dev trabalhe em uma seção sem afetar outras.
 2. **Shared Layer**: Componentes UI base (botões, cards, etc) e funções utilitárias ficam em `shared/`, sendo importados por qualquer feature que precise.
-3. **Path Aliases**: O alias `@/` aponta para `src/`, permitindo imports limpos como `@/features/navbar/Navbar` em vez de caminhos relativos longos.
-4. **Design System**: Tailwind CSS + variáveis CSS em `theme.css` garantem consistência visual em todo o site.
-5. **Theme Toggle**: Implementado via manipulação da classe `.light` no elemento raiz (`<html>`), controlado diretamente pelo componente `Navbar`.
-6. **Responsividade**: Cada componente usa classes responsivas do Tailwind (`md:`, `lg:`) para se adaptar a qualquer tela.
-7. **Animações**: Framer Motion é usado em todas as seções para transições suaves e microinterações.
+3. **Componentes Customizados da Marca**: Centralização de botões e elementos altamente estilizados com a identidade visual do time na pasta `shared/phoenix/` (como o `PhoenixButton` premium com gradientes metálicos e efeitos hover).
+4. **Partículas e Efeitos Visuais**: Componente modularizado `Particles` na camada de animações compartilhadas (`shared/animations/`) para renderizar faíscas e efeitos de partículas douradas com alto desempenho.
+5. **Path Aliases**: O alias `@/` aponta para `src/`, permitindo imports limpos como `@/features/navbar/Navbar` em vez de caminhos relativos longos.
+6. **Design System**: Tailwind CSS v4 + variáveis CSS customizadas em `theme.css` garantem consistência visual em todo o site. Definimos um tema escuro padrão com uma rica paleta dourada e laranja (`phoenix-gold`, `phoenix-orange`, `phoenix-black`, etc).
+7. **Navbar Flutuante Premium (Pill-shape)**: Uma Navbar de navegação estilo pílula que flutua no topo da tela com efeito de vidro fosco (*glassmorphism*), sombra projetada e bordas circulares (`rounded-full`), contendo a logo como um medalhão centralizado proeminente.
+8. **Theme Toggle**: Implementado via manipulação da classe `.light` no elemento raiz (`<html>`), controlado diretamente pelo componente `Navbar`.
+9. **Responsividade**: Cada componente usa classes responsivas do Tailwind (`md:`, `lg:`) para se adaptar a qualquer tela.
+10. **Animações**: Framer Motion é usado em todas as seções para transições suaves e microinterações, operando em conjunto com um renderizador otimizado baseado em canvas para a animação do Hero de alta performance.
+11. **Footer Otimizado**: Remoção do formulário de Newsletter redundante para um rodapé limpo e direto estruturado em 3 colunas harmônicas.
 
 ---
 
