@@ -8,3 +8,8 @@
   --font-body:    'Inter', sans-serif;
   --font-stencil: 'Saira Stencil One', sans-serif;
 }
+
+@utility bg-hero-gradient {
+  background: linear-gradient(to bottom, rgba(0,0,0,0.45) 0%, transparent 30%, transparent 70%, rgba(0,0,0,0.7) 100%);
+}
+

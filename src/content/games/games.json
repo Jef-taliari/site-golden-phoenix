@@ -1,0 +1,18 @@
+[
+  {
+    "id": 1,
+    "homeTeamId": 1,
+    "awayTeamId": 3,
+    "date": "2026-05-23",
+    "time": "14:00",
+    "venue": "Estádio da Secretaria Municipal de Esportes (Antigo SESI) - Arapongas - PR"
+  },
+  {
+    "id": 2,
+    "homeTeamId": 1,
+    "awayTeamId": 3,
+    "date": "2026-07-10",
+    "time": "18:30",
+    "venue": "Arena Rio"
+  }
+]

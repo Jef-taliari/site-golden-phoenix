@@ -29,4 +29,4 @@ export const SCROLL_HEIGHT = '700vh';
 export const EASE = 0.08;
 
 /** Progresso (0–1) a partir do qual a cena 3 (logo + CTA) aparece */
-export const SCENE3_START = 0.75;
+export const SCENE3_START = 0.87;
