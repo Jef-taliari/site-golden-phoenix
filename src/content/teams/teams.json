@@ -2,19 +2,19 @@
   {
     "id": 1,
     "name": "Golden Phoenix",
-    "logo": "/uploads/logo-phoenix.webp",
+    "logo": "uploads/logo-phoenix.webp",
     "city": "Arapongas - PR"
   },
   {
     "id": 2,
     "name": "Maringá Pyros",
-    "logo": "/uploads/logo-maringa-pyros.webp",
+    "logo": "uploads/logo-maringa-pyros.webp",
     "city": "Maringá - PR"
   },
   {
     "id": 3,
     "name": "Francisco Beltrão Red Feet",
-    "logo": "/uploads/logo-redfeet.webp",
+    "logo": "uploads/logo-redfeet.webp",
     "city": "Francisco Beltrão - PR"
   }
 ]
